@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title> Order History </title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>{{session["username"]}}'s Order History</h1>
+    <ul> 
+      {% for category in categories: %}
+          <a href="/order_history/{{category["order_id"]}}"><li>Order ID: {{ category["order_id"] }}</a> 
+            <ul>
+              <li>Order Date: {{category["date"]}}</li>
+               <li> Total Price: {{category["price"]}} Galleons</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('home') }}" method="get" >
+         <button type="submit" class = "button_">Return Home</button>
+     </form>
+    <!-- <a href= "{{ url_for('home') }}"  >Return Home</a> -->
+  </body>
+</html>

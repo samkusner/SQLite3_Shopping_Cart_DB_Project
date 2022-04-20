@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title> Login Page </title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1><i>Login Form</i></h1>
+    <form action="/login" method="POST">
+    
+     username: <input type="text" name="username" class = "button_"> 
+     <br>
+     password: <input type="text" name="password" class = "button_">
+     <br> 
+     <input type = "submit" name = submit class = "button_"> 
+
+    </form>
+    {% if user == 0 %}
+      <h3> Sorry! That didn't work. Try another username/password :) </h3>
+    {% endif %}
+    <form action="{{ url_for('home') }}" method="get" >
+         <button type="submit" class = "button_">Return Home</button>
+     </form>
+    <!-- <a href= "{{ url_for('home') }}"  >Return Home</a> -->
+  </body>
+</html>

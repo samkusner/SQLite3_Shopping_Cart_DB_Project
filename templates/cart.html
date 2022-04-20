@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title> Cart </title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>{{session["username"]}}'s Cart</h1>
+    <ul> 
+      {% for item in items: %}
+        <li> Product Name: {{ item["name"] }}</li>
+        <ul>
+          <li> Added Quantity: {{item["qty"]}}</li>
+          <li> Available Stock: {{item["stock"]}}</li>
+          <li> Total Cost: {{item["price"]}} Galleons</li>
+          <form action="/cart" method="POST">
+            <input type="hidden" name="id" value={{item["id"]}}>
+            
+			      <input type="submit" name="submit" value = "Remove From Cart" class = "button_">
+          </form>
+          <form action="/cart" method="POST">
+            <input type="hidden" name="id" value={{item["id"]}}>
+            <select id="qty" name="qty" class = "button_">
+              {% for i in range(1,item["stock"]+1): %}
+              <option value="{{i}}"" class = "button_">{{i}}</option>
+              {% endfor %}
+            </select>
+            <input type="submit" name="submit" value = "Edit Quantity" class = "button_">
+          </form>
+        </ul>
+      {% endfor %}
+      <br></br>
+      
+      Total Cost: {{total}} Galleons
+      <br></br>
+      
+      <form action="/cart" method="POST">
+        <input type="submit" name="submit" value = "Delete Cart" class = "button_">
+      </form>
+      <form action="/cart" method="POST">
+        <input type="submit" name="submit" value = "Check Out" class = "button_">
+      </form>
+    </ul>
+    <form action="{{ url_for('home') }}" method="get" >
+         <button type="submit" class = "button_">Return Home</button>
+     </form>
+    
+  </body>
+</html>

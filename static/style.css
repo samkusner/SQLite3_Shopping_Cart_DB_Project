@@ -1,0 +1,34 @@
+body {
+  background-color: #850f0f;
+  color:#ffae00;
+  font-family: Luminarie, Fantasy;
+  line-height: 1.4;
+  width: 60%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+a {
+  color: #ffae00;
+}
+a:hover {
+  color: #feeba4;
+  font: bold;
+}
+
+img.magic {
+	border-radius: 8px;
+  border: 6px dotted #feeba4;
+  background-color: #ffae00;
+  box-shadow: 3px 3px 6px #d18400;
+  filter:grayscale(0%);
+}
+img.magic:hover {
+  filter:grayscale(50%);
+}
+
+.button_ {
+  color: #850f0f;
+  background-color:#ffecc2;
+  font-family: Luminarie, Fantasy;
+}

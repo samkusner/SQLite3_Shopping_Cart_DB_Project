@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title> My Form </title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<h1>Sign Up</h1>
+		<form action="/sign_up" method="POST">
+			<input type="text" name="username" placeholder="Username" class = "button_"><br>
+			<input type="text" name="fname" placeholder="First Name" class = "button_"><br>
+      <input type="text" name="lname" placeholder="Last Name" class = "button_"><br>
+			<input type="text" name="password" placeholder="Password" class = "button_"><br><br>
+			<input type="submit" name="submit" class = "button_">
+		</form>
+    {% if sign == 1 %}
+      <h2> Sign Up Successful </h2>
+    {% endif %}
+    {% if repeat == 1 %}
+      <h2> Oops! That username already exists. Pick a new one </h2>
+    {% endif %}
+    {% if complete == 1 %}
+      <h2> Please fill in each field </h2>
+    {% endif %}
+    <form action="{{ url_for('home') }}" method="get" >
+         <button type="submit" class = "button_">Return Home</button>
+     </form>
+    <!-- <a href= "{{ url_for('home') }}"  >Return Home</a> -->
+	</body>
+</html>

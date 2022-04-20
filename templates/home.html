@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title> Home Page </title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    
+    <h1>Wizarding World Webshop</h1>
+     <form action="{{ url_for('search') }}" method="get" >
+         <button type="submit" class = "button_">Search</button>
+     </form>
+    <!-- <a href= "{{ url_for('search') }}"  >Search</a> -->
+    <!-- <br></br> -->
+    
+    {% if session["username"] == null: %}
+    <form action="{{ url_for('login') }}" method="get" >
+         <button type="submit" class = "button_">Login</button>
+     </form>
+    <!-- <a href= "{{ url_for('login') }}"  >Login</a>
+    <br></br> -->
+    <form action="{{ url_for('signUp') }}" method="get" >
+         <button type="submit" class = "button_">Sign Up</button>
+     </form>
+    <!-- <a href= "{{ url_for('signUp') }}"  >Sign Up</a>
+    <br></br> -->
+    {% endif %}
+    {% if session["username"] != null: %}
+    <form action="{{ url_for('logout') }}" method="get" >
+         <button type="submit" class = "button_">Logout</button>
+     </form>
+    <form action="{{ url_for('cart') }}" method="get" >
+         <button type="submit" class = "button_">Cart</button>
+     </form>
+    <form action="{{ url_for('order_history') }}" method="get" >
+         <button type="submit" class = "button_">Order History</button>
+     </form>
+    <!-- <a href= "{{ url_for('logout') }}"  >Logout</a>
+    <a href= "{{ url_for('cart') }}"  >Cart</a>
+    <br></br>
+    <br></br>
+    <a href= "{{ url_for('order_history') }}"  >Order History</a> -->
+    {% endif %}
+      Shop by category:
+      <ul>
+        {% for category in categories: %}
+          <li><a href="/category/{{category["category"]}}">{{ category["category"] }}</a> 
+        {% endfor %}
+        
+      </ul>
+  
+      Shop by Product:
+      <ul>
+        {% for product in products: %}
+        <li>{{ product["name"] }}</li>
+        <ul>
+          
+          <li><img src="/static/assets/{{ product['id']}}.jpg" width = 200 class="magic" id = "magic"></li>
+          <li> Stock: {{product["stock"]}}</li>
+          <li> Price: {{product["cost"]}} Galleons</li>
+          <form action="/" method="POST">
+            
+              <select id="qty" name="qty" class = "button_">
+                {% for i in range(1,product["stock"]+1): %}
+                <option value="{{i}}"" class = "button_">{{i}}</option>
+                {% endfor %}
+              </select>
+            
+              <input type="hidden" name="id" value={{product["id"]}}>
+              {% if session["username"] != null: %}
+			        <input type="submit" name="submit" value = "Add to Cart" class = "button_">
+                {% else: %}
+                <input type="submit" name="submit" value = "Login to Add to Cart" class = "button_">
+                {% endif %}
+          </form>
+        </ul>
+        {% endfor %}
+        
+      </ul>
+  </body>
+</html>

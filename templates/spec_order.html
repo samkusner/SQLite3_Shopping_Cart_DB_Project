@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title> Order History </title>
+    <link href="/../static/style.css" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <h1>{{session["username"]}}'s Ordered Products </h1>
+    <ul> 
+      {% for item in items: %}
+        
+        <li>{{ item["name"] }}</li>
+        <ul>
+          <li><img src="/static/assets/{{ item['id']}}.jpg" width = 200 class="magic" id = "magic"></li>
+          <li> Quantity: {{item["qty"]}}</li>
+          
+        </ul>
+      
+      {% endfor %}
+     
+    </ul>
+    <form action="{{ url_for('order_history') }}" method="get" >
+         <button type="submit" class = "button_">Return to Order History</button>
+     </form>
+    <!-- <a href= "{{ url_for('order_history') }}"  >Return to Order History</a> -->
+    <form action="{{ url_for('home') }}" method="get" >
+         <button type="submit" class = "button_">Return Home</button>
+     </form>
+    <!-- <a href= "{{ url_for('home') }}"  >Return Home</a> -->
+  </body>
+</html>

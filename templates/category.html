@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title> {{ title }} </title>
+    <link href="/../static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+    
+    <ul> 
+      {% for item in items: %}
+        <li>{{ item["name"] }}</li>
+        <ul>
+          <li><img src="/static/assets/{{ item['id']}}.jpg" width = 200 class="magic" id = "magic"></li>
+          <li> Stock: {{item["stock"]}}</li>
+          <li> Price: {{item["cost"]}} Galleons</li>
+          <form action="/" method="POST">
+              <select id="qty" name="qty" class = "button_">
+                {% for i in range(1,item["stock"]+1): %}
+                <option value="{{i}}"" class = "button_">{{i}}</option>
+                {% endfor %}
+              </select>
+              <input type="hidden" name="id" value={{item["id"]}}>
+			      <!-- <input type="submit" name="submit" class = "button_"> -->
+                {% if session["username"] != null: %}
+			        <input type="submit" name="submit" value = "Add to Cart" class = "button_">
+                {% else: %}
+                <input type="submit" name="submit" value = "Login to Add to Cart" class = "button_">
+                {% endif %}
+          </form>
+        </ul>
+      {% endfor %}
+    </ul>
+    <form action="{{ url_for('home') }}" method="get" >
+         <button type="submit" class = "button_">Return Home</button>
+     </form>
+    <!-- <a href= "{{ url_for('home') }}"  >Return Home</a> -->
+  </body>
+</html>
