@@ -11,7 +11,7 @@ A logged in user's shopping cart can be viewed, edited, checked out or deleted. 
 - Python Flask was used for all the server side scripting.
 - The cart was implemented with Session variables. 
 - Minimum information was kept about customers: username and password, first and last name.
-- 
+
 ## Completed Levels
 
 - [X] The user can see all the products the store sells; minimum of 10 products.
