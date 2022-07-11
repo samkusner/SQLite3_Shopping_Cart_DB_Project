@@ -7,6 +7,11 @@ Only a logged in user can add products to a shopping cart and then checkout to c
 
 A logged in user's shopping cart can be viewed, edited, checked out or deleted. A logged in user can also see her order history which should include the list of items purchased and total cost of the order.
 
+## Run
+- Reset the database by running the command: sqlite3 myDatabase.db ".read store_schema.sql"
+- Activate the virtual environment by running the command: source .venv/bin/activate
+- Start the program by rumming the command: python3 main.py
+
 ## Implementation
 - Python Flask was used for all the server side scripting.
 - The cart was implemented with Session variables. 
